@@ -108,4 +108,7 @@ search:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repository: git@github.com:DJB-git/stardust-annals.github.io.git
+  branch: main
+  git_cmd: "C:/Program Files/Git/bin/git.exe"
