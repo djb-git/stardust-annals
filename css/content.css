@@ -1,0 +1,186 @@
+.kira-content {
+  position: relative;
+  height: fit-content;
+  overflow: auto;
+  scrollbar-width: none;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+.kira-content .kira-main-content {
+  position: relative;
+  background-color: transparent;
+  max-width: 100%;
+  padding: 10px 25px;
+  min-height: 96vh;
+/* 分类标签 */
+}
+.kira-content .kira-main-content .kira-page-nav {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  color: #999;
+  border-radius: $radius;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 6px;
+}
+.kira-content .kira-main-content .kira-page-nav .page-number {
+  transition: 300ms;
+}
+.kira-content .kira-main-content .kira-page-nav .current {
+  color: #fff;
+  background: $color1;
+  opacity: 0.9;
+  box-shadow: 0 2px 12px $color1;
+}
+.kira-content .kira-main-content .kira-page-nav a:not(.current):hover {
+  background-color: rgba(155,155,155,0.15);
+}
+.kira-content .kira-main-content .kira-page-nav > * {
+  color: #666;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  float: left;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.kira-content .kira-main-content .kira-posts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.kira-content .kira-main-content .kira-posts .kira-post {
+  max-width: 100%;
+  transition: all 0.3s ease;
+  padding: 0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.kira-content .kira-main-content .kira-posts .kira-post article .aplayer {
+  margin: 6px 0 0 0 !important;
+}
+.kira-content .kira-main-content .kira-posts .kira-post .kira-post-body {
+  padding: 20px 24px;
+}
+.kira-content .kira-main-content .kira-posts .kira-post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.kira-content .kira-main-content .kira-posts .kira-post-meta {
+  margin: 6px 0 0 0 !important;
+}
+.kira-content .kira-main-content .kira-posts .kira-post:last-child {
+  margin-bottom: $gutter;
+}
+.kira-content .kira-main-content .kira-posts .kira-hr {
+  display: none;
+}
+.kira-content .kira-main-content .kira-post-category {
+  display: inline-block;
+  font-size: 13px;
+  padding: 3px 12px;
+  border-radius: 4px;
+  background: $krlbgc1;
+  color: $color1;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.kira-content::-webkit-scrollbar {
+  display: none;
+}
+/* ========== 搜索页 ========== */
+.kira-search-page {
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.kira-search-page .kira-search-input-wrap {
+  margin-bottom: 30px;
+  position: relative;
+}
+.kira-search-page .kira-search-input-wrap input {
+  width: 100%;
+  padding: 14px 80px 14px 20px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  outline: none;
+  color: #333;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s;
+}
+.kira-search-page .kira-search-input-wrap input:focus {
+  box-shadow: 0 2px 12px rgba(49,174,255,0.15);
+}
+.kira-search-page .kira-search-input-wrap input::placeholder {
+  color: #bbb;
+}
+.kira-search-page .kira-search-input-wrap .kira-search-count {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #999;
+  pointer-events: none;
+}
+.kira-search-page .kira-search-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.kira-search-page .kira-search-list li {
+  margin-bottom: 8px;
+}
+.kira-search-page .kira-search-list li a {
+  display: block;
+  padding: 14px 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.kira-search-page .kira-search-list li a:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+.kira-search-page .kira-search-list .kira-search-title {
+  display: block;
+  font-size: 1.05em;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #333;
+}
+.kira-search-page .kira-search-list .kira-search-title mark {
+  background: $krlbgc1;
+  color: $color1;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.kira-search-page .kira-search-list .kira-search-snippet {
+  display: block;
+  font-size: 0.85em;
+  color: #999;
+  line-height: 1.4;
+}
+.kira-search-page .kira-search-list .kira-search-snippet mark {
+  background: $krlbgc1;
+  color: $color1;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.kira-search-page .kira-search-empty {
+  text-align: center;
+  color: #999;
+  margin-top: 40px;
+  font-size: 0.95em;
+}
