@@ -1,0 +1,107 @@
+@media (max-width: 1180px) {
+  .kira-sidebar {
+    flex: 0 0 180px !important;
+  }
+  .kira-content {
+    flex: 1 1 auto !important;
+    max-width: 700px !important;
+  }
+  .kira-right-column {
+    flex: 0 0 180px !important;
+  }
+}
+@media (max-width: 1000px) {
+  body {
+    height: fit-content;
+    overflow: auto;
+  }
+  body .kira-header {
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 4;
+  }
+  body .kira-header a {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+  }
+  body .kira-header a i {
+    font-size: 25px;
+    line-height: 45px;
+  }
+  body .kira-header a img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  body .kira-header a:hover {
+    background-color: rgba(0,0,0,0.16);
+  }
+  body .kira-body {
+    height: fit-content;
+    overflow: visible;
+  }
+  body .kira-body .kira-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 16;
+    transform: translateX(-100%);
+    background-color: #fff;
+    flex: none !important;
+    width: auto;
+  }
+  body .kira-body .kira-sidebar.show {
+    transform: translateX(0%);
+    width: calc(100% - 56px);
+  }
+  body .kira-body .kira-sidebar-modal.show {
+    pointer-events: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  body .kira-body .kira-content {
+    flex: 1 1 auto !important;
+    margin-right: unset;
+    max-width: 100vw;
+    margin-top: 0;
+  }
+  body .kira-body .kira-content #kira-top-header {
+    top: calc(-2vh - 80px);
+  }
+  body .kira-body .kira-right-column {
+    flex: none !important;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    height: auto;
+    width: auto;
+  }
+  body .kira-body .kira-right-column .kira-right-widgets {
+    display: none;
+  }
+  body::-webkit-scrollbar {
+    width: 0;
+  }
+  .kira-dark-toggle {
+    left: auto;
+    right: 20px;
+    bottom: 80px;
+  }
+}
+@media (max-width: 756px) {
+  .kira-archives .categories {
+    grid-template-columns: repeat(2, 49%);
+    grid-column-gap: 2%;
+  }
+}
+@media (max-width: 400px) {
+  .kira-archives .categories {
+    grid-template-columns: repeat(1, 100%);
+  }
+}
