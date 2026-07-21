@@ -290,12 +290,13 @@
 			</div>
 			<div class="kira-right-column">
 	<div class="kira-right-widgets">
-		<!-- 搜索 -->
+		<!-- 即时搜索 -->
 		<div class="kira-right-search">
-			<a href="/stardust-annals/search.html" style="display:flex;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.08);overflow:hidden;text-decoration:none;">
-				<span style="flex:1;border:none;outline:none;padding:8px 12px;font-size:13px;background:transparent;color:#bbb;min-width:0;">搜索文章...</span>
-				<span style="border:none;background:transparent;color:#999;padding:8px 12px;font-size:15px;"><i class="kirafont icon-search"></i></span>
-			</a>
+			<div class="kira-right-search-box">
+				<input type="text" id="kira-search-input-right" placeholder="搜索文章..." autocomplete="off" />
+				<i class="kirafont icon-search"></i>
+			</div>
+			<div class="kira-right-search-results" id="kira-search-results-right"></div>
 		</div>
 
 		<!-- 分类 -->
@@ -322,6 +323,57 @@
 		</button>
 	</a>
 </div>
+
+<script>
+(function() {
+	var input = document.getElementById('kira-search-input-right');
+	var results = document.getElementById('kira-search-results-right');
+	var posts = [];
+	var timer;
+
+	fetch('/stardust-annals/search.json')
+		.then(function(r) { return r.json(); })
+		.then(function(d) { posts = d; });
+
+	input.addEventListener('input', function() {
+		clearTimeout(timer);
+		var q = this.value.trim();
+		if (!q) { results.innerHTML = ''; results.style.display = 'none'; return; }
+		if (!posts.length) return;
+		timer = setTimeout(function() {
+			var ql = q.toLowerCase();
+			var list = posts.filter(function(p) {
+				return p.title.toLowerCase().indexOf(ql) > -1;
+			}).slice(0, 8);
+			if (!list.length) {
+				results.innerHTML = '<div class="kira-search-noresult">无结果</div>';
+				results.style.display = 'block';
+				return;
+			}
+			var html = '';
+			list.forEach(function(p) {
+				html += '<a href="/stardust-annals/' + p.url + '">' + p.title + '</a>';
+			});
+			results.innerHTML = html;
+			results.style.display = 'block';
+		}, 200);
+	});
+
+	document.addEventListener('click', function(e) {
+		if (!e.target.closest('.kira-right-search')) {
+			results.style.display = 'none';
+		}
+	});
+
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape' && document.activeElement === input) {
+			input.value = '';
+			results.style.display = 'none';
+			input.blur();
+		}
+	});
+})();
+</script>
 
 		</div>
 	<!-- 暗色模式切换 -->
