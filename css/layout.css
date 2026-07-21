@@ -295,6 +295,33 @@ figure.highlight table tbody tr td.code pre *::selection {
   color: #bbb !important;
   background-color: #2a2a2a !important;
 }
+[data-theme="dark"] .kira-search-page .kira-search-input-wrap input {
+  background: #2a2a2a;
+  color: #ddd;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+[data-theme="dark"] .kira-search-page .kira-search-input-wrap input::placeholder {
+  color: #777;
+}
+[data-theme="dark"] .kira-search-page .kira-search-input-wrap input:focus {
+  box-shadow: 0 2px 12px rgba(49,174,255,0.2);
+}
+[data-theme="dark"] .kira-search-page .kira-search-list li a {
+  background: #2a2a2a;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+[data-theme="dark"] .kira-search-page .kira-search-list li a:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+[data-theme="dark"] .kira-search-page .kira-search-list li a .kira-search-title {
+  color: #ddd;
+}
+[data-theme="dark"] .kira-search-page .kira-search-list li a .kira-search-snippet {
+  color: #888;
+}
+[data-theme="dark"] .kira-search-page .kira-search-empty {
+  color: #888;
+}
 .kira-rainbow a:nth-child(7n + 1) {
   background-color: rgba(49,174,255,0.25);
   color: #31aeff;
@@ -1093,10 +1120,11 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
 }
 .kira-search-page .kira-search-input-wrap {
   margin-bottom: 30px;
+  position: relative;
 }
 .kira-search-page .kira-search-input-wrap input {
   width: 100%;
-  padding: 14px 20px;
+  padding: 14px 80px 14px 20px;
   font-size: 1.1em;
   border: none;
   border-radius: 12px;
@@ -1105,9 +1133,22 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
   outline: none;
   color: #333;
   box-sizing: border-box;
+  transition: box-shadow 0.2s;
+}
+.kira-search-page .kira-search-input-wrap input:focus {
+  box-shadow: 0 2px 12px rgba(49,174,255,0.15);
 }
 .kira-search-page .kira-search-input-wrap input::placeholder {
   color: #bbb;
+}
+.kira-search-page .kira-search-input-wrap .kira-search-count {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #999;
+  pointer-events: none;
 }
 .kira-search-page .kira-search-list {
   list-style: none;
@@ -1124,12 +1165,37 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
   border-radius: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   color: #333;
-  font-size: 1.05em;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 .kira-search-page .kira-search-list li a:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+.kira-search-page .kira-search-list .kira-search-title {
+  display: block;
+  font-size: 1.05em;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #333;
+}
+.kira-search-page .kira-search-list .kira-search-title mark {
+  background: rgba(49,174,255,0.25);
   color: #31aeff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.kira-search-page .kira-search-list .kira-search-snippet {
+  display: block;
+  font-size: 0.85em;
+  color: #999;
+  line-height: 1.4;
+}
+.kira-search-page .kira-search-list .kira-search-snippet mark {
+  background: rgba(49,174,255,0.25);
+  color: #31aeff;
+  padding: 0 2px;
+  border-radius: 2px;
 }
 .kira-search-page .kira-search-empty {
   text-align: center;

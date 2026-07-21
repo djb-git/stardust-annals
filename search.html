@@ -239,39 +239,78 @@
 				<div id="kira-top-header"></div>
 				<div class="kira-main-content">
 					<div class="kira-search-page">
-    <div class="kira-search-input-wrap">
-        <input type="text" id="kira-search-input" placeholder="输入关键词搜索文章..." autofocus />
-    </div>
-    <div id="kira-search-results"></div>
+	<div class="kira-search-input-wrap">
+		<input type="text" id="kira-search-input" placeholder="输入关键词搜索文章..." autofocus />
+		<span id="kira-search-count" class="kira-search-count"></span>
+	</div>
+	<div id="kira-search-results"></div>
 </div>
 <script>
 (function() {
-    var input = document.getElementById('kira-search-input');
-    var results = document.getElementById('kira-search-results');
-    var posts = [];
-    fetch('/stardust-annals/search.json')
-        .then(function(r) { return r.json(); })
-        .then(function(data) { posts = data; })
-        .catch(function() { results.innerHTML = '<p class="kira-search-empty">搜索数据加载失败</p>'; });
+	var input = document.getElementById('kira-search-input');
+	var results = document.getElementById('kira-search-results');
+	var countEl = document.getElementById('kira-search-count');
+	var posts = [];
+	var timer;
 
-    input.addEventListener('input', function() {
-        var q = this.value.trim().toLowerCase();
-        if (!q) { results.innerHTML = ''; return; }
-        if (!posts.length) { results.innerHTML = '<p class="kira-search-empty">正在加载...</p>'; return; }
-        var filtered = posts.filter(function(p) {
-            return p.title.toLowerCase().indexOf(q) > -1 || (p.content && p.content.toLowerCase().indexOf(q) > -1);
-        });
-        if (!filtered.length) {
-            results.innerHTML = '<p class="kira-search-empty">未找到相关文章</p>';
-            return;
-        }
-        var html = '<ul class="kira-search-list">';
-        filtered.forEach(function(p) {
-            html += '<li><a href="/stardust-annals/' + p.url + '"><span class="kira-search-title">' + p.title + '</span></a></li>';
-        });
-        html += '</ul>';
-        results.innerHTML = html;
-    });
+	fetch('/stardust-annals/search.json')
+		.then(function(r) { return r.json(); })
+		.then(function(data) { posts = data; })
+		.catch(function() { results.innerHTML = '<p class="kira-search-empty">搜索数据加载失败</p>'; });
+
+	function highlight(text, q) {
+		var re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+		return text.replace(re, '<mark>$1</mark>');
+	}
+
+	function snippet(content, q, len) {
+		if (!content) return '';
+		len = len || 120;
+		var idx = content.toLowerCase().indexOf(q.toLowerCase());
+		if (idx === -1) return content.slice(0, len) + '…';
+		var start = Math.max(0, idx - 30);
+		var end = Math.min(content.length, idx + q.length + len);
+		var s = (start > 0 ? '…' : '') + content.slice(start, end) + (end < content.length ? '…' : '');
+		return s;
+	}
+
+	input.addEventListener('input', function() {
+		clearTimeout(timer);
+		var q = this.value.trim();
+		if (!q) { results.innerHTML = ''; countEl.textContent = ''; return; }
+		if (!posts.length) { results.innerHTML = '<p class="kira-search-empty">正在加载…</p>'; return; }
+
+		timer = setTimeout(function() {
+			var ql = q.toLowerCase();
+			var filtered = posts.filter(function(p) {
+				return p.title.toLowerCase().indexOf(ql) > -1 || (p.content && p.content.toLowerCase().indexOf(ql) > -1);
+			});
+			countEl.textContent = filtered.length ? '共 ' + filtered.length + ' 篇' : '';
+			if (!filtered.length) {
+				results.innerHTML = '<p class="kira-search-empty">未找到相关文章</p>';
+				return;
+			}
+			var html = '<ul class="kira-search-list">';
+			filtered.forEach(function(p) {
+				var snip = snippet((p.content || '').replace(/<[^>]+>/g, ''), q);
+				html += '<li><a href="/stardust-annals/' + p.url + '">';
+				html += '<span class="kira-search-title">' + highlight(p.title, q) + '</span>';
+				if (snip) html += '<span class="kira-search-snippet">' + highlight(snip, q) + '</span>';
+				html += '</a></li>';
+			});
+			html += '</ul>';
+			results.innerHTML = html;
+		}, 250);
+	});
+
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape' && document.activeElement === input) {
+			input.value = '';
+			results.innerHTML = '';
+			countEl.textContent = '';
+			input.blur();
+		}
+	});
 })();
 </script>
 
