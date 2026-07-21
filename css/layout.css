@@ -172,34 +172,17 @@ figure.highlight table tbody tr td.code pre *::selection {
 [data-theme="dark"] .kira-post-footer {
   background-color: #2a2a2a !important;
 }
-[data-theme="dark"] .kira-right-column .kira-right-login .kira-login-btn {
-  background: #2a2a2a;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-  color: #ccc;
-}
-[data-theme="dark"] .kira-right-column .kira-right-login .kira-login-btn svg {
-  color: #ccc;
-}
-[data-theme="dark"] .kira-right-column .kira-right-login .kira-login-btn:hover {
-  color: #31aeff;
-}
-[data-theme="dark"] .kira-right-column .kira-right-login .kira-login-btn:hover svg {
-  color: #31aeff;
-}
-[data-theme="dark"] .kira-right-column .kira-right-search form {
+[data-theme="dark"] .kira-right-column .kira-right-search a {
   background: #2a2a2a;
   box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
-[data-theme="dark"] .kira-right-column .kira-right-search form input {
-  color: #ddd;
-}
-[data-theme="dark"] .kira-right-column .kira-right-search form input::placeholder {
+[data-theme="dark"] .kira-right-column .kira-right-search a span:first-child {
   color: #777;
 }
-[data-theme="dark"] .kira-right-column .kira-right-search form button {
+[data-theme="dark"] .kira-right-column .kira-right-search a span:last-child {
   color: #888;
 }
-[data-theme="dark"] .kira-right-column .kira-right-search form button:hover {
+[data-theme="dark"] .kira-right-column .kira-right-search a:hover span:last-child {
   color: #31aeff;
 }
 [data-theme="dark"] .kira-right-column .kira-right-widget-title {
@@ -1215,7 +1198,6 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
   padding: 2vh 16px;
   box-sizing: border-box;
   gap: 16px;
-/* 登录评论按钮 */
 /* 搜索栏 */
 /* 分类标题 */
 /* 分类列表 */
@@ -1228,69 +1210,13 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
 .kira-right-column .kira-right-widgets::-webkit-scrollbar {
   display: none;
 }
-.kira-right-column .kira-right-login {
-  margin-bottom: 18px;
-}
-.kira-right-column .kira-right-login .kira-login-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  color: #333;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.kira-right-column .kira-right-login .kira-login-btn svg {
-  color: #333;
-  transition: color 0.2s;
-}
-.kira-right-column .kira-right-login .kira-login-btn:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  color: #31aeff;
-}
-.kira-right-column .kira-right-login .kira-login-btn:hover svg {
-  color: #31aeff;
-}
 .kira-right-column .kira-right-search {
   margin-bottom: 18px;
 }
-.kira-right-column .kira-right-search form {
-  display: flex;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  overflow: hidden;
-}
-.kira-right-column .kira-right-search input {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 8px 12px;
-  font-size: 13px;
-  background: transparent;
-  color: #333;
-  min-width: 0;
-}
-.kira-right-column .kira-right-search input::placeholder {
+.kira-right-column .kira-right-search a span:first-child {
   color: #bbb;
 }
-.kira-right-column .kira-right-search button {
-  border: none;
-  background: transparent;
-  color: #999;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: color 0.2s;
-}
-.kira-right-column .kira-right-search button:hover {
+.kira-right-column .kira-right-search a:hover span:last-child {
   color: #31aeff;
 }
 .kira-right-column .kira-right-widget-title {
