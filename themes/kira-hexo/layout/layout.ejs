@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html <% if (config.language) { %>
+	lang="<%- config.language %>"<% } %>>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<%- css("css/layout") %>
+		<% var title=page.title; if (is_archive()){ title=__('archive'); if
+		(is_month()){ title +='：' + page.year + '/' + page.month; } else if (is_year()){ title
+		+='：' + page.year; } } else if (is_category()){ title=__('count.categories') + '：' +
+		page.category; } else if (is_tag()){ title=__('count.tags') + '：' + page.tag; } %>
+		<title><% if (title){ %> <%= title %> - <% } %> <%= config.title %></title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		<%- css("lib/mdui/mdui.min") %>
+		<%- js("lib/mdui/mdui.min") %>
+		<!-- lazyload -->
+		<%- js("lib/lazysizes") %>
+		<!-- smooth-scrolling -->
+		<%- js("lib/smooth-scrolling") %>
+		<!-- highlight -->
+		<%- css("lib/highlight/atom-one-dark.min") %>
+		<%- js("lib/highlight/highlight.min") %>
+		<!-- 预置 kiraicon -->
+		<%- css("lib/iconfont/iconfont") %>
+		<% if (theme.iconlib) { %>
+			<link rel="stylesheet" href="<%= theme.iconlib %>" crossorigin />
+		<% } %>
+		<link
+			rel="shortcut icon"
+			href="<%= theme.favicon.href %>"
+			type="<%= theme.favicon.type %>"
+		/>
+		<%- css("deps/css/APlayer.min") %>
+		<% if (theme.customStyles) { %>
+			<% theme.customStyles.forEach(function(customCss){ %>
+				<%- css(customCss) %>
+			<% }) %>
+		<% } %>
+		<%- js(["deps/js/APlayer.min", "deps/js/Meting.min"]) %>
+	</head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('<%= theme.background.path %>')"
+		></div>
+		<%- include("components/header") %>
+		<div class="kira-body">
+			<%- include("components/sidebar") %>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					<%- body %>
+				</div>
+			</div>
+			<%- include("components/right-column") %>
+		</div>
+	<!-- 暗色模式切换 -->
+	<button class="kira-dark-toggle" id="darkToggle" aria-label="切换亮暗模式" title="切换亮暗模式">
+		<svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+			<path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.82 3.04 12.41 3 12 3z"/>
+		</svg>
+		<svg class="sun-icon" viewBox="0 0 24 24">
+			<circle cx="12" cy="12" r="4" fill="currentColor"/>
+			<g stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+				<line x1="12" y1="1.5" x2="12" y2="5"/>
+				<line x1="12" y1="19" x2="12" y2="22.5"/>
+				<line x1="1.5" y1="12" x2="5" y2="12"/>
+				<line x1="19" y1="12" x2="22.5" y2="12"/>
+				<line x1="4.5" y1="4.5" x2="7" y2="7"/>
+				<line x1="17" y1="17" x2="19.5" y2="19.5"/>
+				<line x1="19.5" y1="4.5" x2="17" y2="7"/>
+				<line x1="7" y1="17" x2="4.5" y2="19.5"/>
+			</g>
+		</svg>
+	</button>
+	<script>
+		(function() {
+			var toggle = document.getElementById('darkToggle');
+			var html = document.documentElement;
+			var saved = localStorage.getItem('kira-theme');
+			if (saved === 'dark') html.setAttribute('data-theme', 'dark');
+			toggle.addEventListener('click', function() {
+				var isDark = html.getAttribute('data-theme') === 'dark';
+				if (isDark) {
+					html.removeAttribute('data-theme');
+					localStorage.setItem('kira-theme', 'light');
+				} else {
+					html.setAttribute('data-theme', 'dark');
+					localStorage.setItem('kira-theme', 'dark');
+				}
+			});
+		})();
+	</script>
+</body>
+</html>

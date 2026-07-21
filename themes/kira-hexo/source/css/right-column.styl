@@ -1,0 +1,163 @@
+@import 'constants.styl';
+
+.kira-right-column {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: sticky;
+	pointer-events: auto;
+	top: 0;
+	z-index: 10;
+	padding: 2vh 16px;
+	box-sizing: border-box;
+	gap: 16px;
+
+	.kira-right-widgets {
+		flex: 1;
+		overflow-y: auto;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar { display: none; }
+	}
+
+	/* 登录评论按钮 */
+	.kira-right-login {
+		margin-bottom: 18px;
+
+		.kira-login-btn {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			padding: 10px 16px;
+			background: #fff;
+			border-radius: 8px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+			color: #333;
+			font-size: 13px;
+			font-weight: 500;
+			text-decoration: none;
+			cursor: pointer;
+			transition: all 0.2s ease;
+
+			svg { color: #333; transition: color 0.2s; }
+
+			&:hover {
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+				color: $color1;
+
+				svg { color: $color1; }
+			}
+		}
+	}
+
+	/* 搜索栏 */
+	.kira-right-search {
+		margin-bottom: 18px;
+
+		form {
+			display: flex;
+			background: #fff;
+			border-radius: 8px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+			overflow: hidden;
+		}
+
+		input {
+			flex: 1;
+			border: none;
+			outline: none;
+			padding: 8px 12px;
+			font-size: 13px;
+			background: transparent;
+			color: #333;
+			min-width: 0;
+
+			&::placeholder { color: #bbb; }
+		}
+
+		button {
+			border: none;
+			background: transparent;
+			color: #999;
+			padding: 8px 12px;
+			cursor: pointer;
+			font-size: 15px;
+			transition: color 0.2s;
+
+			&:hover { color: $color1; }
+		}
+	}
+
+	/* 分类标题 */
+	.kira-right-widget-title {
+		font-size: 14px;
+		font-weight: 600;
+		color: #555;
+		margin-bottom: 10px;
+	}
+
+	/* 分类列表 */
+	.kira-right-cat-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		li {
+			margin-bottom: 2px;
+
+			a {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 6px 10px;
+				border-radius: 6px;
+				color: #666;
+				font-size: 13px;
+				transition: all 0.15s ease;
+				text-decoration: none;
+
+				&::before {
+					content: '#';
+					margin-right: 6px;
+					color: $color1;
+					font-weight: 600;
+				}
+
+				span {
+					color: #bbb;
+					font-size: 11px;
+					background: #f0f0f0;
+					padding: 1px 7px;
+					border-radius: 10px;
+					min-width: 18px;
+					text-align: center;
+				}
+
+				&:hover {
+					background: rgba(0, 0, 0, 0.04);
+					color: $color1;
+
+					span { background: $krlbgc1; color: $color1; }
+				}
+			}
+		}
+	}
+
+	.kira-backtotop {
+		color: rgb(85, 85, 85);
+		background-color: rgba(255, 255, 255, 0.7);
+		border-radius: 50%;
+		margin: 0 auto 10px auto;
+		transition: 500ms;
+		pointer-events: all;
+		flex-shrink: 0;
+
+		i { font-size: 20px; }
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.95);
+		}
+	}
+}

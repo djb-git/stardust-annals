@@ -1,0 +1,36 @@
+<div class="kira-search-page">
+    <div class="kira-search-input-wrap">
+        <input type="text" id="kira-search-input" placeholder="输入关键词搜索文章..." autofocus />
+    </div>
+    <div id="kira-search-results"></div>
+</div>
+<script>
+(function() {
+    var input = document.getElementById('kira-search-input');
+    var results = document.getElementById('kira-search-results');
+    var posts = [];
+    fetch('<%- config.root %>search.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) { posts = data; })
+        .catch(function() { results.innerHTML = '<p class="kira-search-empty">搜索数据加载失败</p>'; });
+
+    input.addEventListener('input', function() {
+        var q = this.value.trim().toLowerCase();
+        if (!q) { results.innerHTML = ''; return; }
+        if (!posts.length) { results.innerHTML = '<p class="kira-search-empty">正在加载...</p>'; return; }
+        var filtered = posts.filter(function(p) {
+            return p.title.toLowerCase().indexOf(q) > -1 || (p.content && p.content.toLowerCase().indexOf(q) > -1);
+        });
+        if (!filtered.length) {
+            results.innerHTML = '<p class="kira-search-empty">未找到相关文章</p>';
+            return;
+        }
+        var html = '<ul class="kira-search-list">';
+        filtered.forEach(function(p) {
+            html += '<li><a href="<%- config.root %>' + p.url + '"><span class="kira-search-title">' + p.title + '</span></a></li>';
+        });
+        html += '</ul>';
+        results.innerHTML = html;
+    });
+})();
+</script>

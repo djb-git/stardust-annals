@@ -1,0 +1,53 @@
+<div class="kira-posts">
+    <% page.posts.each(function (page) { %>
+        <div class="kira-post">
+            <a href="<%- url_for(page.path) %>">
+                <% if (page.cover){ %>
+                <div class="kira-post-cover">
+                    <img
+                        data-src="<%- page.cover %>"
+                        data-sizes="auto"
+                        alt="<%= page.title %>"
+                        class="lazyload kira-post-cover-image"
+                    />
+                </div>
+                <% } else { %>
+                <div class="kira-post-cover">
+                    <img
+                        data-src="<%- theme.background.path %>"
+                        data-sizes="auto"
+                        alt="<%= page.title %>"
+                        class="lazyload"
+                    />
+                </div>
+                <% } %>
+            </a>
+            <div class="kira-post-body">
+                <% if (page.categories && page.categories.length > 0) { %>
+                    <a class="kira-post-category" href="<%- url_for(page.categories.first().path) %>">
+                        <%= page.categories.first().name %>
+                    </a>
+                <% } %>
+                <h2 class="kira-post-title">
+                    <a href="<%- url_for(page.path) %>"><%= page.title %></a>
+                </h2>
+                <% if (page.subtitle) { %>
+                    <div class="kira-post-subtitle"><%= page.subtitle %></div>
+                <% } %>
+                <div class="kira-post-meta">
+                    <span><i class="kirafont icon-calendar-fill"></i><%- date(page.date, "YYYY-MM-DD") %></span>
+                    <span><i class="kirafont icon-time-circle-fill"></i><%= min2read(page.content, {cn: 250, en: 160}) %> min</span>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
+<% if (page.total > 1){ %>
+    <div class="kira-page-nav">
+        <%- paginator({
+            prev_text: '<i class="kirafont icon-left"></i>',
+            next_text: '<i class="kirafont icon-right"></i>',
+            escape: false
+        }) %>
+    </div>
+<% } %>

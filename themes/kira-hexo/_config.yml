@@ -1,0 +1,123 @@
+# Kira 主题配置
+# 头像/网站 Logo
+avatar: https://i.stardots.io/d4t46/StarDots-2026072116182064240.jpg
+
+# 背景图（博客背景 + 文章默认头图）
+background:
+  path: https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg
+  width: 1280
+  height: 720
+
+# 网站图标
+favicon:
+  href: https://kira.host/assets/Pictures/Others/116359b4ccf19917.jpg
+  type: image/png
+
+# CDN 资源
+cdn:
+  gitalk:
+    css: https://unpkg.com/gitalk@latest/dist/gitalk.css
+    js: https://unpkg.com/gitalk@latest/dist/gitalk.min.js
+  giscus:
+    js: https://giscus.app/client.js
+
+# 导航菜单
+menu:
+  回到首页:
+    - /
+    - icon-home
+  文章归档:
+    - /archive.html
+    - icon-container
+  关于本人:
+    - /about.html
+    - icon-user
+  我的朋友:
+    - /friends.html
+    - icon-team
+
+# 侧边栏组件
+widgets:
+  - social
+  - category
+  - tagcloud
+  - archive
+
+# 标签云最大显示数量（0 = 不限制）
+maxTagcloud: 0
+
+# 社交链接 (名称: [链接, 图标, 颜色, 背景色])
+social:
+  GitHub:
+    - https://github.com/
+    - icon-github
+    - rgb(25, 23, 23)
+    - rgba(25, 23, 23, .15)
+
+# 配色方案
+color:
+  first:
+    r: 49
+    g: 174
+    b: 255
+  second:
+    r: 255
+    g: 78
+    b: 106
+  third:
+    r: 255
+    g: 185
+    b: 0
+  fourth:
+    r: 51
+    g: 213
+    b: 122
+  fifth:
+    r: 0
+    g: 219
+    b: 255
+  sixth:
+    r: 255
+    g: 69
+    b: 0
+  seventh:
+    r: 144
+    g: 144
+    b: 255
+
+# 评论区 (Gitalk - GitHub 登录，国内能访问)
+# 启用：GitHub → Settings → Developer settings → OAuth Apps → 新建
+# Authorization callback URL 填你的博客地址，拿到 Client ID + Secret 填入下方
+gitalk:
+  active: false
+  clientID: ''
+  clientSecret: ''
+  repo: ''
+  owner: ''
+  admin: ['']
+giscus:
+  active: false
+disqus:
+  active: false
+  shortname: ''
+
+# 版权声明
+copyright: '<strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可'
+
+# 自定义侧边栏尾部
+sidebar: ''
+
+# 可复制的代码块
+copyableCodeblock: true
+
+# 友链
+friends:
+  - name: Hexo
+    link: https://hexo.io/
+    avatar: https://hexo.io/icon/favicon-196x196.png
+  - name: GitHub
+    link: https://github.com/
+    avatar: https://github.githubassets.com/favicons/favicon-dark.svg
+  - name: MDN
+    link: https://developer.mozilla.org/
+    avatar: https://developer.mozilla.org/favicon-48x48.png

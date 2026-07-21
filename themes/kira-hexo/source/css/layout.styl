@@ -1,0 +1,374 @@
+@import 'constants.styl';
+
+body {
+	width: 100%;
+	margin: auto !important;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #f0f2f5;
+}
+
+* {
+	scrollbar-width: none;
+	outline: none;
+
+	&::selection {
+		background: $color1;
+		color: #fff;
+		text-shadow: none;
+	}
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+img::selection {
+	background: $krlbgc2;
+}
+
+figure.highlight table tbody tr td {
+	&.gutter {
+		user-select: none;
+	}
+
+	&.code pre *::selection {
+		background: $color2;
+	}
+}
+
+.kira-background {
+	display: none;
+}
+
+.kira-header {
+	height: 0;
+	display: none;
+}
+
+#kira-top-header {
+	position: absolute;
+	width: 100%;
+	height: 0;
+	left: 0;
+	top: -2vh;
+}
+
+.kira-body {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.kira-sidebar {
+	flex: 0 0 14%;
+	max-width: none !important;
+}
+
+.kira-content {
+	flex: 0 0 58%;
+	max-width: none !important;
+}
+
+.kira-right-column {
+	flex: 0 0 14%;
+	width: auto !important;
+}
+
+/* ========== 暗色模式切换按钮 ========== */
+.kira-dark-toggle {
+	position: fixed;
+	left: 20px;
+	bottom: 30px;
+	z-index: 100;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	border: none;
+	background: #fff;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	color: #ffd54f;
+
+	&:hover {
+		transform: scale(1.1);
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+	}
+
+	svg {
+		width: 20px;
+		height: 20px;
+		transition: transform 0.4s ease;
+		fill: #ffd54f;
+	}
+
+	.sun-icon { display: block; }
+	.moon-icon { display: none; }
+}
+
+/* ========== 暗色模式 ========== */
+[data-theme="dark"] {
+	body {
+		background-color: #1a1a1a;
+	}
+
+	.kira-dark-toggle {
+		background: #424242;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+		color: #ffd54f;
+
+		svg { fill: #ffd54f; }
+
+		.sun-icon { display: none; }
+		.moon-icon { display: block; }
+	}
+
+	.kira-sidebar {
+		.kira-author-name { color: #ddd; }
+
+		.kira-count div {
+			color: #aaa;
+			span { color: #ddd; }
+		}
+
+		.kira-list-item {
+			color: #bbb;
+			&:hover { background-color: rgba(255, 255, 255, 0.06); }
+		}
+
+		.kira-widget-wrap {
+			background-color: #363636;
+			box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+
+			.kira-widget {
+				ul li a { color: #ccc; }
+			}
+
+			.kira-social a {
+				color: #ccc !important;
+				background-color: rgba(255, 255, 255, 0.1) !important;
+			}
+		}
+
+		.kira-copyright { color: #999; }
+	}
+
+	.kira-content .kira-main-content {
+		.kira-posts .kira-post {
+			background: #2a2a2a;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+			&:hover {
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+			}
+
+			.kira-post-title a { color: #e8e8e8; }
+			.kira-post-excerpt { color: #aaa; }
+			.kira-post-meta span { color: #888; }
+		}
+
+		.kira-page-nav > * {
+			background: #2a2a2a;
+			color: #aaa;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+		}
+	}
+
+	.kira-post-copyright {
+		color: #ccc !important;
+		background-color: #2a2a2a !important;
+	}
+
+	.kira-post-footer {
+		background-color: #2a2a2a !important;
+	}
+
+	.kira-right-column {
+		.kira-right-login .kira-login-btn {
+			background: #2a2a2a;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+			color: #ccc;
+
+			svg { color: #ccc; }
+
+			&:hover {
+				color: $color1;
+				svg { color: $color1; }
+			}
+		}
+
+		.kira-right-search form {
+			background: #2a2a2a;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+			input { color: #ddd; &::placeholder { color: #777; } }
+			button { color: #888; &:hover { color: $color1; } }
+		}
+
+		.kira-right-widget-title { color: #bbb; }
+
+		.kira-right-cat-list li a {
+			color: #aaa;
+			span { background: #363636; color: #888; }
+			&:hover {
+				background: rgba(255, 255, 255, 0.04);
+				color: $color1;
+				span { background: rgba(255, 255, 255, 0.06); color: $color1; }
+			}
+		}
+
+		.kira-backtotop {
+			background-color: rgba(42, 42, 42, 0.85);
+			color: #ccc;
+		}
+	}
+
+	.kira-content .kira-main-content .kira-posts .kira-post .kira-post-subtitle {
+		color: #777;
+	}
+
+	.kira-post-category {
+		background: rgba(255, 255, 255, 0.08) !important;
+	}
+
+	/* 文章内容暗色模式 */
+	article {
+		color: #ccc;
+
+		h1, h2, h3, h4, h5, h6 {
+			color: #ddd;
+		}
+
+		h2::before {
+			border-bottom-color: #444;
+		}
+
+		blockquote {
+			color: #aaa;
+			background-color: #2a2a2a;
+			border-color: #444;
+
+			&::before, &::after {
+				color: #666;
+			}
+		}
+
+		hr {
+			border-top-color: #444;
+		}
+
+		ul li::before {
+			border-color: #2a2a2a;
+		}
+
+		> table {
+			color: #bbb;
+
+			thead {
+				border-bottom-color: #444;
+				background-color: #2a2a2a;
+
+				tr {
+					background-color: #2a2a2a;
+				}
+			}
+
+			th, td {
+				border-color: #444;
+			}
+
+			tr {
+				background-color: #1e1e1e;
+
+				&:nth-child(2n) {
+					background-color: #2a2a2a;
+				}
+			}
+		}
+
+		input[type='checkbox']::after {
+			color: #ccc;
+			background-color: #2a2a2a;
+			border-color: #555;
+		}
+	}
+
+	details {
+		.aplayer {
+			-webkit-box-shadow: 0 0 0 1px #444 !important;
+			box-shadow: 0 0 0 1px #444 !important;
+
+			.aplayer-list ol li.aplayer-list-light {
+				background: #2a2a2a !important;
+			}
+		}
+	}
+
+	.kira-content .kira-main-content .kira-posts .kira-post .kira-post-copyright {
+		color: #bbb !important;
+		background-color: #2a2a2a !important;
+	}
+}
+
+.kira-rainbow {
+	a:nth-child(7n + 1) {
+		background-color: $krlbgc1;
+		color: $color1;
+	}
+
+	a:nth-child(7n + 2) {
+		background-color: $krlbgc2;
+		color: $color2;
+	}
+
+	a:nth-child(7n + 3) {
+		background-color: $krlbgc3;
+		color: $color3;
+	}
+
+	a:nth-child(7n + 4) {
+		background-color: $krlbgc4;
+		color: $color4;
+	}
+
+	a:nth-child(7n + 5) {
+		background-color: $krlbgc5;
+		color: $color5;
+	}
+
+	a:nth-child(7n + 6) {
+		background-color: $krlbgc6;
+		color: $color6;
+	}
+
+	a:nth-child(7n + 7) {
+		background-color: $krlbgc7;
+		color: $color7;
+	}
+}
+
+.kira-rainbow-fill {
+	a {
+		color: #fff;
+	}
+}
+
+@import 'article.styl';
+
+@import 'sidebar.styl';
+@import 'content.styl';
+@import 'right-column.styl';
+@import 'post.styl';
+@import 'archive.styl';
+
+@import 'media.styl';
