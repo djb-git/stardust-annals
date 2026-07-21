@@ -293,7 +293,7 @@
 			var html = '<ul class="kira-search-list">';
 			filtered.forEach(function(p) {
 				var snip = snippet((p.content || '').replace(/<[^>]+>/g, ''), q);
-				html += '<li><a href="/stardust-annals/' + p.url + '">';
+				html += '<li><a href="' + p.url + '">';
 				html += '<span class="kira-search-title">' + highlight(p.title, q) + '</span>';
 				if (snip) html += '<span class="kira-search-snippet">' + highlight(snip, q) + '</span>';
 				html += '</a></li>';
@@ -380,7 +380,7 @@
 			}
 			var html = '';
 			list.forEach(function(p) {
-				html += '<a href="/stardust-annals/' + p.url + '">' + p.title + '</a>';
+				html += '<a href="' + p.url + '">' + p.title + '</a>';
 			});
 			results.innerHTML = html;
 			results.style.display = 'block';
