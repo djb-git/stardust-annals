@@ -1,5 +1,6 @@
 ---
-title: 开站
+title: 星屑の記 第一篇文章
+date: 2026-07-21 16:19:00
 cover: https://i.stardots.io/d4t46/StarDots-2026072116193221461.jpg
 subtitle: 从零搭建个人博客的踩坑记录
 categories: 公告

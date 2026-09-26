@@ -3,7 +3,16 @@
     "allow": [
       "Bash(npx hexo *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(ssh *)",
+      "Bash(gh repo *)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(git ls-remote *)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:djb-git.github.io)",
+      "Bash(cp layout.styl layout.styl.bak)",
+      "Bash(sed -i '196,207c\\\\\\\\t\\\\t.kira-right-search {\\\\n\\\\t\\\\t\\\\t.kira-right-search-box {\\\\n\\\\t\\\\t\\\\t\\\\tbackground: #2a2a2a;\\\\n\\\\t\\\\t\\\\t\\\\tbox-shadow: 0 1px 3px rgba\\(0, 0, 0, 0.25\\);\\\\n\\\\n\\\\t\\\\t\\\\t\\\\tinput { color: #ddd; \\\\&::placeholder { color: #777; } }\\\\n\\\\t\\\\t\\\\t\\\\ti { color: #888; }\\\\n\\\\t\\\\t\\\\t}\\\\n\\\\n\\\\t\\\\t\\\\t.kira-right-search-results {\\\\n\\\\t\\\\t\\\\t\\\\tbackground: #2a2a2a;\\\\n\\\\t\\\\t\\\\t\\\\tbox-shadow: 0 4px 16px rgba\\(0, 0, 0, 0.3\\);\\\\n\\\\n\\\\t\\\\t\\\\t\\\\ta {\\\\n\\\\t\\\\t\\\\t\\\\t\\\\tcolor: #ccc;\\\\n\\\\t\\\\t\\\\t\\\\t\\\\tborder-bottom-color: #3a3a3a;\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\&:hover { background: rgba\\($color1, 0.1\\); color: $color1; }\\\\n\\\\t\\\\t\\\\t\\\\t}\\\\n\\\\t\\\\t\\\\t}\\\\n\\\\t\\\\t}' layout.styl)",
+      "Bash(rm -f themes/kira-hexo/source/css/layout.styl.bak)"
     ]
   }
 }

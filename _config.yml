@@ -13,7 +13,8 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://djb-git.github.io/stardust-annals
+root: /stardust-annals/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -109,6 +110,6 @@ search:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: git@github.com:DJB-git/stardust-annals.github.io.git
+  repository: git@github.com:djb-git/stardust-annals.git
   branch: main
   git_cmd: "C:/Program Files/Git/bin/git.exe"

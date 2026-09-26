@@ -6,11 +6,13 @@
 		const gitalk = new Gitalk({
 			clientID: '<%= theme.gitalk.clientID %>',
 			clientSecret: '<%= theme.gitalk.clientSecret %>',
-			id: '<%=page.title%>',
+			id: '<%= page.path %>',
 			repo: '<%= theme.gitalk.repo %>',
 			owner: '<%= theme.gitalk.owner %>',
 			admin: '<%= theme.gitalk.admin %>',
-			title: '<%= theme.gitalk.title %>',
+			title: '<%= page.title %>',
+			labels: ['Gitalk'],
+			distractionFreeMode: false
 		});
 		gitalk.render('gitalk');
 	</script>

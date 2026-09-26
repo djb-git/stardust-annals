@@ -10,8 +10,8 @@ background:
 
 # 网站图标
 favicon:
-  href: https://kira.host/assets/Pictures/Others/116359b4ccf19917.jpg
-  type: image/png
+  href: https://i.stardots.io/d4t46/StarDots-2026092618083934773.ico
+  type: image/x-icon
 
 # CDN 资源
 cdn:
@@ -89,12 +89,12 @@ color:
 # 启用：GitHub → Settings → Developer settings → OAuth Apps → 新建
 # Authorization callback URL 填你的博客地址，拿到 Client ID + Secret 填入下方
 gitalk:
-  active: false
-  clientID: ''
-  clientSecret: ''
-  repo: ''
-  owner: ''
-  admin: ['']
+  active: true
+  clientID: Ov23liOqoMurwJuBYPlb
+  clientSecret: 7f0bef01d1d084248c07f6bac83c4d80eba0caf3
+  repo: stardust-annals
+  owner: djb-git
+  admin: ['djb-git']
 giscus:
   active: false
 disqus:

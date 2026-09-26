@@ -67,7 +67,7 @@ figure.highlight table tbody tr td {
 }
 
 .kira-sidebar {
-	flex: 0 0 14%;
+	flex: 0 0 15.5%;
 	max-width: none !important;
 }
 
@@ -137,8 +137,8 @@ figure.highlight table tbody tr td {
 		.kira-author-name { color: #ddd; }
 
 		.kira-count div {
-			color: #aaa;
-			span { color: #ddd; }
+			color: #ddd;
+			span { color: #999; }
 		}
 
 		.kira-list-item {
@@ -194,38 +194,28 @@ figure.highlight table tbody tr td {
 	}
 
 	.kira-right-column {
-		.kira-right-login .kira-login-btn {
-			background: #2a2a2a;
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-			color: #ccc;
+		.kira-right-search {
+			.kira-right-search-box {
+				background: #2a2a2a;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 
-			svg { color: #ccc; }
-
-			&:hover {
-				color: $color1;
-				svg { color: $color1; }
+				input { color: #ddd; &::placeholder { color: #777; } }
+				i { color: #888; }
 			}
-		}
 
-		.kira-right-search form {
-			background: #2a2a2a;
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+			.kira-right-search-results {
+				background: #2a2a2a;
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 
-			input { color: #ddd; &::placeholder { color: #777; } }
-			button { color: #888; &:hover { color: $color1; } }
+				a {
+					color: #ccc;
+					border-bottom-color: #3a3a3a;
+					&:hover { background: rgba($color1, 0.1); color: $color1; }
+				}
+			}
 		}
 
 		.kira-right-widget-title { color: #bbb; }
-
-		.kira-right-cat-list li a {
-			color: #aaa;
-			span { background: #363636; color: #888; }
-			&:hover {
-				background: rgba(255, 255, 255, 0.04);
-				color: $color1;
-				span { background: rgba(255, 255, 255, 0.06); color: $color1; }
-			}
-		}
 
 		.kira-backtotop {
 			background-color: rgba(42, 42, 42, 0.85);
@@ -318,6 +308,30 @@ figure.highlight table tbody tr td {
 		color: #bbb !important;
 		background-color: #2a2a2a !important;
 	}
+
+	/* 搜索页暗色 */
+	.kira-search-page {
+		.kira-search-input-wrap input {
+			background: #2a2a2a;
+			color: #ddd;
+			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+
+			&::placeholder { color: #777; }
+			&:focus { box-shadow: 0 2px 12px rgba(49, 174, 255, 0.2); }
+		}
+
+		.kira-search-list li a {
+			background: #2a2a2a;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+			&:hover { box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3); }
+
+			.kira-search-title { color: #ddd; }
+			.kira-search-snippet { color: #888; }
+		}
+
+		.kira-search-empty { color: #888; }
+	}
 }
 
 .kira-rainbow {
@@ -364,6 +378,7 @@ figure.highlight table tbody tr td {
 }
 
 @import 'article.styl';
+@import 'kira-decorate.styl';
 
 @import 'sidebar.styl';
 @import 'content.styl';
