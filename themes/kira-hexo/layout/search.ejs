@@ -1,75 +1,23 @@
 <div class="kira-search-page">
-	<div class="kira-search-input-wrap">
-		<input type="text" id="kira-search-input" placeholder="输入关键词搜索文章..." autofocus />
-		<span id="kira-search-count" class="kira-search-count"></span>
+	<div class="kira-search-head">
+		<h2 class="kira-search-heading">搜索文章</h2>
+		<p class="kira-search-desc">支持匹配文章标题与正文，试试输入「Clash」「订阅」或「博客」。</p>
+		<div class="kira-search-input-wrap">
+			<i class="kirafont icon-search"></i>
+			<input type="text" id="kira-search-input" placeholder="输入关键词…" autocomplete="off" autofocus />
+			<button type="button" class="kira-search-clear" id="kira-search-clear" aria-label="清空搜索"><i class="kirafont icon-close"></i></button>
+		</div>
+		<div class="kira-search-count" id="kira-search-count"></div>
 	</div>
 	<div id="kira-search-results"></div>
 </div>
 <script>
-(function() {
-	var input = document.getElementById('kira-search-input');
-	var results = document.getElementById('kira-search-results');
-	var countEl = document.getElementById('kira-search-count');
-	var posts = [];
-	var timer;
-
-	fetch('<%- config.root %>search.json')
-		.then(function(r) { return r.json(); })
-		.then(function(data) { posts = data; })
-		.catch(function() { results.innerHTML = '<p class="kira-search-empty">搜索数据加载失败</p>'; });
-
-	function highlight(text, q) {
-		var re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-		return text.replace(re, '<mark>$1</mark>');
-	}
-
-	function snippet(content, q, len) {
-		if (!content) return '';
-		len = len || 120;
-		var idx = content.toLowerCase().indexOf(q.toLowerCase());
-		if (idx === -1) return content.slice(0, len) + '…';
-		var start = Math.max(0, idx - 30);
-		var end = Math.min(content.length, idx + q.length + len);
-		var s = (start > 0 ? '…' : '') + content.slice(start, end) + (end < content.length ? '…' : '');
-		return s;
-	}
-
-	input.addEventListener('input', function() {
-		clearTimeout(timer);
-		var q = this.value.trim();
-		if (!q) { results.innerHTML = ''; countEl.textContent = ''; return; }
-		if (!posts.length) { results.innerHTML = '<p class="kira-search-empty">正在加载…</p>'; return; }
-
-		timer = setTimeout(function() {
-			var ql = q.toLowerCase();
-			var filtered = posts.filter(function(p) {
-				return p.title.toLowerCase().indexOf(ql) > -1 || (p.content && p.content.toLowerCase().indexOf(ql) > -1);
-			});
-			countEl.textContent = filtered.length ? '共 ' + filtered.length + ' 篇' : '';
-			if (!filtered.length) {
-				results.innerHTML = '<p class="kira-search-empty">未找到相关文章</p>';
-				return;
-			}
-			var html = '<ul class="kira-search-list">';
-			filtered.forEach(function(p) {
-				var snip = snippet((p.content || '').replace(/<[^>]+>/g, ''), q);
-				html += '<li><a href="' + p.url + '">';
-				html += '<span class="kira-search-title">' + highlight(p.title, q) + '</span>';
-				if (snip) html += '<span class="kira-search-snippet">' + highlight(snip, q) + '</span>';
-				html += '</a></li>';
-			});
-			html += '</ul>';
-			results.innerHTML = html;
-		}, 250);
-	});
-
-	document.addEventListener('keydown', function(e) {
-		if (e.key === 'Escape' && document.activeElement === input) {
-			input.value = '';
-			results.innerHTML = '';
-			countEl.textContent = '';
-			input.blur();
-		}
-	});
-})();
+kiraSearch({
+	input: 'kira-search-input',
+	results: 'kira-search-results',
+	count: 'kira-search-count',
+	clear: 'kira-search-clear',
+	url: '<%- config.root %>search.json',
+	mode: 'page'
+});
 </script>

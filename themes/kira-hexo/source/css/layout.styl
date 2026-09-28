@@ -1,5 +1,9 @@
 @import 'constants.styl';
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	width: 100%;
 	margin: auto !important;
@@ -197,25 +201,60 @@ figure.highlight table tbody tr td {
 		.kira-right-search {
 			.kira-right-search-box {
 				background: #2a2a2a;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+				border-color: rgba(255, 255, 255, 0.06);
+				box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 
+				> i { color: #777; }
 				input { color: #ddd; &::placeholder { color: #777; } }
-				i { color: #888; }
 			}
 
 			.kira-right-search-results {
 				background: #2a2a2a;
-				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+				border-color: rgba(255, 255, 255, 0.06);
+				box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 
-				a {
+				.kira-search-hit {
 					color: #ccc;
-					border-bottom-color: #3a3a3a;
-					&:hover { background: rgba($color1, 0.1); color: $color1; }
+
+					&:hover,
+					&.is-active {
+						background-color: rgba($color1, 0.18);
+						color: $color1;
+					}
 				}
+
+				.kira-search-snippet { color: #888; }
+
+				.kira-search-hit:hover .kira-search-snippet,
+				.kira-search-hit.is-active .kira-search-snippet {
+					color: rgba($color1, 0.8);
+				}
+
+				.kira-search-empty { color: #888; }
 			}
 		}
 
 		.kira-right-widget-title { color: #bbb; }
+
+		.kira-right-toc {
+			background-color: #2a2a2a;
+			border-color: rgba(255, 255, 255, 0.06);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+			.kira-toc-link {
+				color: #bbb;
+
+				&:hover { background-color: rgba(255, 255, 255, 0.07); }
+
+				&.active { background-color: rgba($color1, 0.22); }
+			}
+
+			.kira-toc-level-3 .kira-toc-link {
+				color: #8a8a8a;
+
+				&.active { color: $color1; }
+			}
+		}
 
 		.kira-backtotop {
 			background-color: rgba(42, 42, 42, 0.85);
@@ -311,26 +350,61 @@ figure.highlight table tbody tr td {
 
 	/* 搜索页暗色 */
 	.kira-search-page {
-		.kira-search-input-wrap input {
-			background: #2a2a2a;
-			color: #ddd;
-			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+		.kira-search-heading { color: #ddd; }
+		.kira-search-desc { color: #888; }
 
-			&::placeholder { color: #777; }
-			&:focus { box-shadow: 0 2px 12px rgba(49, 174, 255, 0.2); }
+		.kira-search-input-wrap {
+			background: #2a2a2a;
+			border-color: rgba(255, 255, 255, 0.06);
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+			> i { color: #777; }
+
+			input {
+				color: #ddd;
+
+				&::placeholder { color: #777; }
+			}
 		}
 
-		.kira-search-list li a {
-			background: #2a2a2a;
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+		.kira-search-count { color: #888; }
 
-			&:hover { box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3); }
+		.kira-search-list .kira-search-hit {
+			background: #2a2a2a;
+			border-color: rgba(255, 255, 255, 0.06);
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+			&:hover,
+			&.is-active {
+				border-color: rgba($color1, 0.5);
+				box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+			}
 
 			.kira-search-title { color: #ddd; }
 			.kira-search-snippet { color: #888; }
 		}
 
-		.kira-search-empty { color: #888; }
+		.kira-search-empty {
+			background: #2a2a2a;
+			border-color: rgba(255, 255, 255, 0.08);
+			color: #888;
+		}
+	}
+
+	/* 搜索：共用部件暗色 */
+	.kira-search-clear {
+		background-color: rgba(255, 255, 255, 0.1);
+		color: #999;
+
+		&:hover {
+			background-color: rgba($color1, 0.28);
+			color: $color1;
+		}
+	}
+
+	.kira-right-search-results mark,
+	.kira-search-page mark {
+		background-color: rgba($color1, 0.32);
 	}
 }
 
@@ -383,6 +457,7 @@ figure.highlight table tbody tr td {
 @import 'sidebar.styl';
 @import 'content.styl';
 @import 'right-column.styl';
+@import 'kira-search.styl';
 @import 'post.styl';
 @import 'archive.styl';
 

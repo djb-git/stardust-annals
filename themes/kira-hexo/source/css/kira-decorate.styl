@@ -64,6 +64,13 @@ article {
 		display: none;
 	}
 
+	// 从步骤导航跳转时，给目标标题留出上边距，避免紧贴视口顶部
+	h2,
+	h3,
+	h4 {
+		scroll-margin-top: 18px;
+	}
+
 	// 折叠问答（原生 details/summary）
 	details {
 		margin: $gutter 0;

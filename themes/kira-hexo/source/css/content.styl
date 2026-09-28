@@ -1,3 +1,5 @@
+@import 'constants.styl';
+
 .kira-content {
 	position: relative;
 	height: fit-content;
@@ -112,104 +114,139 @@
 
 /* ========== 搜索页 ========== */
 .kira-search-page {
-	max-width: 680px;
-	margin: 40px auto;
+	max-width: 760px;
+	margin: 40px auto 60px;
 	padding: 0 20px;
+	box-sizing: border-box;
+
+	.kira-search-head {
+		margin-bottom: 24px;
+	}
+
+	.kira-search-heading {
+		margin: 0 0 8px;
+		font-size: 1.7em;
+		font-weight: 700;
+		color: #333;
+	}
+
+	.kira-search-desc {
+		margin: 0 0 20px;
+		font-size: 0.9em;
+		line-height: 1.6;
+		color: #98a1ac;
+	}
 
 	.kira-search-input-wrap {
-		margin-bottom: 30px;
-		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 11px;
+		height: 58px;
+		padding: 0 11px 0 18px;
+		box-sizing: border-box;
+		background: #fff;
+		border: 1px solid rgba(31, 45, 61, 0.06);
+		border-radius: 18px;
+		box-shadow: 0 6px 20px rgba(31, 45, 61, 0.07);
+		transition: border-color 0.24s ease, box-shadow 0.24s ease, transform 0.24s ease;
+
+		&:focus-within {
+			border-color: rgba($color1, 0.45);
+			box-shadow: 0 0 0 5px rgba($color1, 0.12), 0 10px 26px rgba(31, 45, 61, 0.09);
+			transform: translateY(-1px);
+		}
+
+		> i {
+			font-size: 18px;
+			color: #b6bcc4;
+			flex-shrink: 0;
+			transition: color 0.24s ease;
+		}
+
+		&:focus-within > i {
+			color: $color1;
+		}
 
 		input {
-			width: 100%;
-			padding: 14px 80px 14px 20px;
-			font-size: 1.1em;
+			flex: 1;
+			min-width: 0;
+			padding: 0;
 			border: none;
-			border-radius: 12px;
-			background: #fff;
-			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 			outline: none;
+			font-size: 1em;
+			background: transparent;
 			color: #333;
-			box-sizing: border-box;
-			transition: box-shadow 0.2s;
 
-			&:focus {
-				box-shadow: 0 2px 12px rgba(49, 174, 255, 0.15);
+			&::placeholder {
+				color: #b6bcc4;
 			}
-
-			&::placeholder { color: #bbb; }
 		}
 
-		.kira-search-count {
-			position: absolute;
-			right: 16px;
-			top: 50%;
-			transform: translateY(-50%);
-			font-size: 12px;
-			color: #999;
-			pointer-events: none;
+		.kira-search-clear {
+			width: 30px;
+			height: 30px;
+
+			i {
+				font-size: 12px;
+			}
 		}
+	}
+
+	.kira-search-count {
+		margin-top: 12px;
+		padding-left: 4px;
+		font-size: 0.85em;
+		color: #98a1ac;
+		min-height: 1.4em;
 	}
 
 	.kira-search-list {
 		list-style: none;
 		padding: 0;
 		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 
 		li {
-			margin-bottom: 8px;
+			margin: 0;
+		}
 
-			a {
-				display: block;
-				padding: 14px 20px;
-				background: #fff;
-				border-radius: 10px;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+		.kira-search-hit {
+			padding: 16px 20px;
+			border: 1px solid rgba(31, 45, 61, 0.05);
+			border-radius: 16px;
+			background: #fff;
+			box-shadow: 0 2px 8px rgba(31, 45, 61, 0.05);
+			color: #4a5361;
+
+			&:hover,
+			&.is-active {
+				border-color: rgba($color1, 0.35);
+				box-shadow: 0 8px 22px rgba($color1, 0.14);
+				transform: translateX(4px);
+			}
+
+			.kira-search-title {
+				font-size: 1.05em;
 				color: #333;
-				text-decoration: none;
-				transition: all 0.2s ease;
-
-				&:hover {
-					transform: translateX(4px);
-					box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-				}
 			}
-		}
 
-		.kira-search-title {
-			display: block;
-			font-size: 1.05em;
-			font-weight: 500;
-			margin-bottom: 4px;
-			color: #333;
-
-			mark {
-				background: $krlbgc1;
-				color: $color1;
-				padding: 0 2px;
-				border-radius: 2px;
-			}
-		}
-
-		.kira-search-snippet {
-			display: block;
-			font-size: 0.85em;
-			color: #999;
-			line-height: 1.4;
-
-			mark {
-				background: $krlbgc1;
-				color: $color1;
-				padding: 0 2px;
-				border-radius: 2px;
+			.kira-search-snippet {
+				font-size: 0.88em;
 			}
 		}
 	}
 
 	.kira-search-empty {
-		text-align: center;
-		color: #999;
-		margin-top: 40px;
-		font-size: 0.95em;
+		padding: 50px 20px;
+		border: 1px dashed rgba(31, 45, 61, 0.1);
+		border-radius: 18px;
+		background: #fff;
+		font-size: 0.92em;
+
+		i {
+			font-size: 26px;
+		}
 	}
 }
