@@ -46,6 +46,11 @@ article h5 > a.headerlink,
 article h6 > a.headerlink {
   display: none;
 }
+article h2,
+article h3,
+article h4 {
+  scroll-margin-top: 18px;
+}
 article details {
   margin: 25px 0;
   padding: 0.35em 1.1em;

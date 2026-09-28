@@ -22,6 +22,10 @@
 		
 <script src="/stardust-annals/lib/lazysizes.js"></script>
 
+		<!-- 搜索（右栏即时搜索 / 搜索页共用） -->
+		
+<script src="/stardust-annals/js/kira-search.js"></script>
+
 		<!-- smooth-scrolling -->
 		
 <script src="/stardust-annals/lib/smooth-scrolling.js"></script>
@@ -85,8 +89,8 @@
 	</div>
 	<div class="kira-author-name">nightowl</div>
 	<div class="kira-count">
-		<div><span>文章</span>3</div>
-		<div><span>标签</span>11</div>
+		<div><span>文章</span>4</div>
+		<div><span>标签</span>13</div>
 		<div><span>分类</span>3</div>
 	</div>
 	<div class="kira-list">
@@ -200,7 +204,7 @@
             <a class="category-list-link" href="/stardust-annals/categories/实用教程/">
               实用教程
             </a>
-            <span class="category-list-count">1</span>
+            <span class="category-list-count">2</span>
           </li>
         
           <li class="category-list-item">
@@ -218,7 +222,7 @@
 			
 	<div class="kira-widget-wrap">
 		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
-			<a href="/stardust-annals/tags/AI/" style="font-size: 10px;">AI</a> <a href="/stardust-annals/tags/API/" style="font-size: 10px;">API</a> <a href="/stardust-annals/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/stardust-annals/tags/Clash-Verge-Rev/" style="font-size: 10px;">Clash Verge Rev</a> <a href="/stardust-annals/tags/Deepseek/" style="font-size: 10px;">Deepseek</a> <a href="/stardust-annals/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/stardust-annals/tags/%E4%BB%A3%E7%90%86/" style="font-size: 10px;">代理</a> <a href="/stardust-annals/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/stardust-annals/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a> <a href="/stardust-annals/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/stardust-annals/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a>
+			<a href="/stardust-annals/tags/AI/" style="font-size: 10px;">AI</a> <a href="/stardust-annals/tags/API/" style="font-size: 10px;">API</a> <a href="/stardust-annals/tags/Android/" style="font-size: 10px;">Android</a> <a href="/stardust-annals/tags/Clash/" style="font-size: 20px;">Clash</a> <a href="/stardust-annals/tags/Clash-Meta/" style="font-size: 10px;">Clash Meta</a> <a href="/stardust-annals/tags/Clash-Verge-Rev/" style="font-size: 10px;">Clash Verge Rev</a> <a href="/stardust-annals/tags/Deepseek/" style="font-size: 10px;">Deepseek</a> <a href="/stardust-annals/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/stardust-annals/tags/%E4%BB%A3%E7%90%86/" style="font-size: 20px;">代理</a> <a href="/stardust-annals/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/stardust-annals/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a> <a href="/stardust-annals/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/stardust-annals/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a>
 		</div>
 		
 	</div>
@@ -231,7 +235,7 @@
 			Archive
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/stardust-annals/archives/2026/">2026</a><span class="archive-list-count">3</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/stardust-annals/archives/2026/">2026</a><span class="archive-list-count">4</span></li></ul>
 		</div>
 	</div>
 
@@ -314,11 +318,14 @@
 		<!-- 即时搜索 -->
 		<div class="kira-right-search">
 			<div class="kira-right-search-box">
-				<input type="text" id="kira-search-input-right" placeholder="搜索文章..." autocomplete="off" />
 				<i class="kirafont icon-search"></i>
+				<input type="text" id="kira-search-input-right" placeholder="搜索文章…" autocomplete="off" />
+				<button type="button" class="kira-search-clear" id="kira-search-clear-right" aria-label="清空搜索"><i class="kirafont icon-close"></i></button>
 			</div>
 			<div class="kira-right-search-results" id="kira-search-results-right"></div>
 		</div>
+
+		
 
 		</div>
 
@@ -330,55 +337,17 @@
 </div>
 
 <script>
-(function() {
-	var input = document.getElementById('kira-search-input-right');
-	var results = document.getElementById('kira-search-results-right');
-	var posts = [];
-	var timer;
-
-	fetch('/stardust-annals/search.json')
-		.then(function(r) { return r.json(); })
-		.then(function(d) { posts = d; });
-
-	input.addEventListener('input', function() {
-		clearTimeout(timer);
-		var q = this.value.trim();
-		if (!q) { results.innerHTML = ''; results.style.display = 'none'; return; }
-		if (!posts.length) return;
-		timer = setTimeout(function() {
-			var ql = q.toLowerCase();
-			var list = posts.filter(function(p) {
-				return p.title.toLowerCase().indexOf(ql) > -1;
-			}).slice(0, 8);
-			if (!list.length) {
-				results.innerHTML = '<div class="kira-search-noresult">无结果</div>';
-				results.style.display = 'block';
-				return;
-			}
-			var html = '';
-			list.forEach(function(p) {
-				html += '<a href="' + p.url + '">' + p.title + '</a>';
-			});
-			results.innerHTML = html;
-			results.style.display = 'block';
-		}, 200);
-	});
-
-	document.addEventListener('click', function(e) {
-		if (!e.target.closest('.kira-right-search')) {
-			results.style.display = 'none';
-		}
-	});
-
-	document.addEventListener('keydown', function(e) {
-		if (e.key === 'Escape' && document.activeElement === input) {
-			input.value = '';
-			results.style.display = 'none';
-			input.blur();
-		}
-	});
-})();
+kiraSearch({
+	input: 'kira-search-input-right',
+	results: 'kira-search-results-right',
+	clear: 'kira-search-clear-right',
+	url: '/stardust-annals/search.json',
+	mode: 'dropdown',
+	max: 8
+});
 </script>
+
+
 
 		</div>
 	<!-- 暗色模式切换 -->

@@ -22,6 +22,10 @@
 		
 <script src="/stardust-annals/lib/lazysizes.js"></script>
 
+		<!-- 搜索（右栏即时搜索 / 搜索页共用） -->
+		
+<script src="/stardust-annals/js/kira-search.js"></script>
+
 		<!-- smooth-scrolling -->
 		
 <script src="/stardust-annals/lib/smooth-scrolling.js"></script>
@@ -85,8 +89,8 @@
 	</div>
 	<div class="kira-author-name">nightowl</div>
 	<div class="kira-count">
-		<div><span>文章</span>3</div>
-		<div><span>标签</span>11</div>
+		<div><span>文章</span>4</div>
+		<div><span>标签</span>13</div>
 		<div><span>分类</span>3</div>
 	</div>
 	<div class="kira-list">
@@ -200,7 +204,7 @@
             <a class="category-list-link" href="/stardust-annals/categories/实用教程/">
               实用教程
             </a>
-            <span class="category-list-count">1</span>
+            <span class="category-list-count">2</span>
           </li>
         
           <li class="category-list-item">
@@ -218,7 +222,7 @@
 			
 	<div class="kira-widget-wrap">
 		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
-			<a href="/stardust-annals/tags/AI/" style="font-size: 10px;">AI</a> <a href="/stardust-annals/tags/API/" style="font-size: 10px;">API</a> <a href="/stardust-annals/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/stardust-annals/tags/Clash-Verge-Rev/" style="font-size: 10px;">Clash Verge Rev</a> <a href="/stardust-annals/tags/Deepseek/" style="font-size: 10px;">Deepseek</a> <a href="/stardust-annals/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/stardust-annals/tags/%E4%BB%A3%E7%90%86/" style="font-size: 10px;">代理</a> <a href="/stardust-annals/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/stardust-annals/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a> <a href="/stardust-annals/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/stardust-annals/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a>
+			<a href="/stardust-annals/tags/AI/" style="font-size: 10px;">AI</a> <a href="/stardust-annals/tags/API/" style="font-size: 10px;">API</a> <a href="/stardust-annals/tags/Android/" style="font-size: 10px;">Android</a> <a href="/stardust-annals/tags/Clash/" style="font-size: 20px;">Clash</a> <a href="/stardust-annals/tags/Clash-Meta/" style="font-size: 10px;">Clash Meta</a> <a href="/stardust-annals/tags/Clash-Verge-Rev/" style="font-size: 10px;">Clash Verge Rev</a> <a href="/stardust-annals/tags/Deepseek/" style="font-size: 10px;">Deepseek</a> <a href="/stardust-annals/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/stardust-annals/tags/%E4%BB%A3%E7%90%86/" style="font-size: 20px;">代理</a> <a href="/stardust-annals/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/stardust-annals/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a> <a href="/stardust-annals/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/stardust-annals/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a>
 		</div>
 		
 	</div>
@@ -231,7 +235,7 @@
 			Archive
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/stardust-annals/archives/2026/">2026</a><span class="archive-list-count">3</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/stardust-annals/archives/2026/">2026</a><span class="archive-list-count">4</span></li></ul>
 		</div>
 	</div>
 
@@ -458,11 +462,17 @@
 	
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			      
+			  
 			<!-- 先找到与当前文字相同的目录 -->
 			   
 			<!-- 在找到当前文章所在的 index -->
-			              
+			       
+			<!-- 下一篇文章 -->
+			<div class="new">
+				<span>下一章</span>
+				<a href="/stardust-annals/2026/09/28/ClashMetaForAndroid%E6%95%99%E7%A8%8B/"> Clash Meta For Android教程</a>
+			</div>
+			                  
 		</nav>
 	</div>
 	
@@ -475,11 +485,23 @@
 		<!-- 即时搜索 -->
 		<div class="kira-right-search">
 			<div class="kira-right-search-box">
-				<input type="text" id="kira-search-input-right" placeholder="搜索文章..." autocomplete="off" />
 				<i class="kirafont icon-search"></i>
+				<input type="text" id="kira-search-input-right" placeholder="搜索文章…" autocomplete="off" />
+				<button type="button" class="kira-search-clear" id="kira-search-clear-right" aria-label="清空搜索"><i class="kirafont icon-close"></i></button>
 			</div>
 			<div class="kira-right-search-results" id="kira-search-results-right"></div>
 		</div>
+
+		
+			<!-- 文章步骤导航 -->
+			
+			
+			<nav class="kira-right-toc" id="kira-right-toc">
+				<div class="kira-right-widget-title">步骤导航</div>
+				<ol class="kira-toc"><li class="kira-toc-item kira-toc-level-2"><a class="kira-toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="kira-toc-text">一、下载与安装</span></a><ol class="kira-toc-child"><li class="kira-toc-item kira-toc-level-3"><a class="kira-toc-link" href="#%E5%94%AF%E4%B8%80%E5%AE%98%E6%96%B9%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="kira-toc-text">唯一官方下载地址</span></a></li></ol></li><li class="kira-toc-item kira-toc-level-2"><a class="kira-toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="kira-toc-text">二、基础使用方法</span></a><ol class="kira-toc-child"><li class="kira-toc-item kira-toc-level-3"><a class="kira-toc-link" href="#%E6%AD%A5%E9%AA%A4-1-%C2%B7-%E5%AF%BC%E5%85%A5%E8%AE%A2%E9%98%85"><span class="kira-toc-text">步骤 1 · 导入订阅</span></a></li><li class="kira-toc-item kira-toc-level-3"><a class="kira-toc-link" href="#%E6%AD%A5%E9%AA%A4-2-%C2%B7-%E9%80%89%E6%8B%A9%E8%8A%82%E7%82%B9"><span class="kira-toc-text">步骤 2 · 选择节点</span></a></li><li class="kira-toc-item kira-toc-level-3"><a class="kira-toc-link" href="#%E6%AD%A5%E9%AA%A4-3-%C2%B7-%E5%BC%80%E5%90%AF%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86"><span class="kira-toc-text">步骤 3 · 开启系统代理</span></a></li></ol></li><li class="kira-toc-item kira-toc-level-2"><a class="kira-toc-link" href="#%E4%B8%89%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="kira-toc-text">三、常见问题</span></a></li><li class="kira-toc-item kira-toc-level-2"><a class="kira-toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%8A%E6%89%8B%E8%87%AA%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="kira-toc-text">四、上手自查清单</span></a></li></ol>
+			</nav>
+			
+		
 
 		</div>
 
@@ -491,55 +513,182 @@
 </div>
 
 <script>
+kiraSearch({
+	input: 'kira-search-input-right',
+	results: 'kira-search-results-right',
+	clear: 'kira-search-clear-right',
+	url: '/stardust-annals/search.json',
+	mode: 'dropdown',
+	max: 8
+});
+</script>
+
+
+<script>
+/* 步骤导航：滚动时高亮当前章节 */
 (function() {
-	var input = document.getElementById('kira-search-input-right');
-	var results = document.getElementById('kira-search-results-right');
-	var posts = [];
-	var timer;
+	var nav = document.getElementById('kira-right-toc');
+	if (!nav) return;
 
-	fetch('/stardust-annals/search.json')
-		.then(function(r) { return r.json(); })
-		.then(function(d) { posts = d; });
+	var links = Array.prototype.slice.call(nav.querySelectorAll('a.kira-toc-link'));
+	if (!links.length) return;
 
-	input.addEventListener('input', function() {
-		clearTimeout(timer);
-		var q = this.value.trim();
-		if (!q) { results.innerHTML = ''; results.style.display = 'none'; return; }
-		if (!posts.length) return;
-		timer = setTimeout(function() {
-			var ql = q.toLowerCase();
-			var list = posts.filter(function(p) {
-				return p.title.toLowerCase().indexOf(ql) > -1;
-			}).slice(0, 8);
-			if (!list.length) {
-				results.innerHTML = '<div class="kira-search-noresult">无结果</div>';
-				results.style.display = 'block';
-				return;
+	// 解析每个链接对应的标题元素
+	var targets = links.map(function(a) {
+		var href = a.getAttribute('href') || '';
+		if (href.charAt(0) !== '#') return null;
+		var id = href.slice(1);
+		try { id = decodeURIComponent(id); } catch (e) {}
+		return document.getElementById(id);
+	});
+
+	var scroller = nav.closest ? nav.closest('.kira-right-widgets') : null;
+	var current = -2;
+
+	function setActive(index) {
+		if (index === current) return;
+		if (current >= 0 && links[current]) links[current].classList.remove('active');
+		current = index;
+		if (index < 0 || !links[index]) return;
+		links[index].classList.add('active');
+		// 让高亮项在导航内部可见（只动导航自身的滚动，不影响页面）
+		if (!scroller) return;
+		var boxRect = scroller.getBoundingClientRect();
+		var elRect = links[index].getBoundingClientRect();
+		if (elRect.top < boxRect.top) {
+			scroller.scrollTop -= boxRect.top - elRect.top;
+		} else if (elRect.bottom > boxRect.bottom) {
+			scroller.scrollTop += elRect.bottom - boxRect.bottom;
+		}
+	}
+
+	var ticking = false;
+	function update() {
+		ticking = false;
+		var best = -1;
+		for (var i = 0; i < targets.length; i++) {
+			if (!targets[i]) continue;
+			if (targets[i].getBoundingClientRect().top <= 120) best = i;
+			else break;
+		}
+		// 还没滚到第一个标题时，默认高亮第一项
+		setActive(best < 0 ? 0 : best);
+	}
+
+	function onScroll() {
+		if (ticking) return;
+		ticking = true;
+		window.requestAnimationFrame(update);
+	}
+
+	/* ---------- 点击跳转 ---------- */
+	// 本主题布局特殊：body 是 position:absolute + height:100vh，文章列又是
+	// overflow:auto，原生锚点滚动会被中间的滚动容器吞掉导致点了没反应。
+	// 所以这里自己算出目标位置，显式滚动每一层可滚动祖先和文档。
+	function docScrollY() {
+		return window.pageYOffset ||
+			(document.documentElement && document.documentElement.scrollTop) ||
+			(document.body && document.body.scrollTop) || 0;
+	}
+
+	var pendingEl = null; // 记住最后一次点击的目标，供动画结束后的校验使用
+
+	function scrollToTarget(el) {
+		var offset = 18; // 与 CSS 的 scroll-margin-top 保持一致
+
+		// 尊重系统的「减弱动态效果」偏好
+		var behavior = 'smooth';
+		try {
+			if (window.matchMedia &&
+				window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				behavior = 'auto';
 			}
-			var html = '';
-			list.forEach(function(p) {
-				html += '<a href="' + p.url + '">' + p.title + '</a>';
-			});
-			results.innerHTML = html;
-			results.style.display = 'block';
-		}, 200);
+		} catch (err) {}
+
+		// 收集可滚动的祖先容器。容器滚动自身内容不会改变它自己的 rect，
+		// 所以下面算出的目标值在动画过程中依然成立，可以先算再滚。
+		var chain = [];
+		var node = el.parentElement;
+		while (node && node !== document.documentElement) {
+			var overflowY = '';
+			try { overflowY = window.getComputedStyle(node).overflowY; } catch (err) {}
+			if ((overflowY === 'auto' || overflowY === 'scroll') &&
+				node.scrollHeight > node.clientHeight + 1) {
+				chain.push(node);
+			}
+			node = node.parentElement;
+		}
+
+		var elTop = el.getBoundingClientRect().top;
+		var docTop;
+
+		if (chain.length) {
+			// 元素所在滚动容器：把标题对齐到容器顶部往下 offset 处
+			var box = chain[0];
+			var boxTop = box.getBoundingClientRect().top;
+			var boxTarget = box.scrollTop + elTop - boxTop - offset;
+			// 文档：把容器顶端对齐到视口顶端，此时标题正好落在 offset 处
+			docTop = docScrollY() + boxTop;
+			try {
+				box.scrollTo({ top: boxTarget, behavior: behavior });
+			} catch (err) {
+				box.scrollTop = boxTarget;
+			}
+		} else {
+			docTop = docScrollY() + elTop - offset;
+		}
+
+		try {
+			window.scrollTo({ top: docTop, behavior: behavior });
+		} catch (err) {
+			window.scrollTo(0, docTop);
+		}
+
+		// 动画结束后校验一次；万一没到位，用原生的滚动到可视区域即时兜底
+		pendingEl = el;
+		setTimeout(function() {
+			if (pendingEl !== el) return;
+			if (Math.abs(el.getBoundingClientRect().top - offset) > 200) {
+				try {
+					el.scrollIntoView({ block: 'start' });
+				} catch (err) {
+					try { el.scrollIntoView(); } catch (err2) {}
+				}
+			}
+		}, 1200);
+	}
+
+	nav.addEventListener('click', function(e) {
+		var link = (e.target && e.target.closest) ? e.target.closest('a.kira-toc-link') : null;
+		if (!link) return;
+
+		var href = link.getAttribute('href') || '';
+		if (href.charAt(0) !== '#') return;
+
+		var id = href.slice(1);
+		try { id = decodeURIComponent(id); } catch (err) {}
+		var el = document.getElementById(id);
+		if (!el) return;
+
+		e.preventDefault();
+		scrollToTarget(el);
+
+		// 同步地址栏，方便复制分享（replaceState 不会触发跳转）
+		if (window.history && window.history.replaceState) {
+			window.history.replaceState(null, '', href);
+		}
+		// 立刻给出反馈，不等滚动事件
+		var idx = links.indexOf(link);
+		if (idx > -1) setActive(idx);
 	});
 
-	document.addEventListener('click', function(e) {
-		if (!e.target.closest('.kira-right-search')) {
-			results.style.display = 'none';
-		}
-	});
-
-	document.addEventListener('keydown', function(e) {
-		if (e.key === 'Escape' && document.activeElement === input) {
-			input.value = '';
-			results.style.display = 'none';
-			input.blur();
-		}
-	});
+	// 用捕获阶段监听，任何容器（不只是 window）滚动都能触发高亮更新
+	document.addEventListener('scroll', onScroll, { passive: true, capture: true });
+	window.addEventListener('resize', onScroll);
+	update();
 })();
 </script>
+
 
 		</div>
 	<!-- 暗色模式切换 -->
